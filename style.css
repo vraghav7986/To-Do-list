@@ -1,0 +1,229 @@
+/* ----------------------------------------------------------- */
+/* 1️⃣ Color palette – light & dark themes are swapped in the
+   body class via CSS variables. -------------------------------- */
+:root {
+  --primary: #1976d2;
+  --accent: #f5f5f5;
+  --bg: #ffffff;
+  --text: #212121;
+  --text-secondary: #757575;
+  --text-muted: #bdbdbd;
+  --border: #e0e0e0;
+}
+
+body.light {
+  --primary: #1976d2;
+  --accent: #f5f5f5;
+  --bg: #ffffff;
+  --text: #212121;
+  --text-secondary: #757575;
+  --text-muted: #bdbdbd;
+  --border: #e0e0e0;
+}
+
+body.dark {
+  --primary: #90caf9;
+  --accent: #424242;
+  --bg: #121212;
+  --text: #e0e0e0;
+  --text-secondary: #bdbdbd;
+  --text-muted: #757575;
+  --border: #616161;
+}
+
+/* ----------------------------------------------------------- */
+/* 2️⃣ Global styles ------------------------------------------------ */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ----------------------------------------------------------- */
+/* 3️⃣ Header ------------------------------------------------ */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+.header-actions button {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  padding: 0.2rem;
+  transition: transform 0.2s;
+}
+.header-actions button:hover {
+  transform: scale(1.1);
+}
+
+/* ----------------------------------------------------------- */
+/* 4️⃣ Filters & Search --------------------------------------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.filter-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--bg);
+  cursor: pointer;
+}
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+}
+#search-input {
+  flex: 1;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ----------------------------------------------------------- */
+/* 5️⃣ Task list --------------------------------------------- */
+.task-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.task-list li {
+  background: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+  transition: background 0.2s;
+}
+.task-list li.dragging {
+  opacity: 0.5;
+}
+.task-list li.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+.task-list li .task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}
+.task-list li .task-title {
+  font-weight: 600;
+  margin: 0;
+}
+.task-list li .task-meta {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.task-list li .task-meta span {
+  margin-right: 0.4rem;
+}
+.task-list li .actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.2rem;
+  color: var(--primary);
+  transition: color 0.2s;
+}
+.task-list li .actions button:hover {
+  color: var(--text);
+}
+
+/* ----------------------------------------------------------- */
+/* 6️⃣ Modal ------------------------------------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+}
+.modal.hidden {
+  display: none;
+}
+.modal-content {
+  background: var(--bg);
+  color: var(--text);
+  padding: 1.5rem;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.modal-content label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  margin-top: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+}
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+.modal-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#save-task-btn {
+  background: var(--primary);
+  color: var(--bg);
+}
+#cancel-task-btn {
+  background: var(--accent);
+  color: var(--text);
+}
+
+/* ----------------------------------------------------------- */
+/* 7️⃣ Utility ------------------------------------------------ */
+.required {
+  color: #d32f2f;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task Manager (TO-DO)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="light">
+<div class="app">
+
+  <!-- ------------- Header ------------- -->
+  <header class="app-header">
+    <h1>Task Manager (TO-DO)</h1>
+    <div class="header-actions">
+      <button id="add-task-btn" title="Add task">➕</button>
+      <button id="clear-completed-btn" title="Clear completed tasks">🗑️</button>
+      <button id="theme-toggle-btn" title="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <!-- ------------- Filters & Search ------------- -->
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="active">Active</button>
+    <button class="filter-btn" data-filter="completed">Completed</button>
+    <input id="search-input" type="search" placeholder="Search…">
+  </div>
+
+  <!-- ------------- Task List ------------- -->
+  <section class="task-list">
+    <ul id="tasks-ul"></ul>
+  </section>
+
+  <!-- ------------- Modal (Add/Edit Task) ------------- -->
+  <div class="modal hidden" id="task-modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h2 id="modal-title">Add Task</h2>
+      <form id="task-form">
+        <input type="hidden" id="task-id">
+        <label>
+          <span>Title *</span>
+          <input type="text" id="task-title" required>
+        </label>
+        <label>
+          <span>Description</span>
+          <textarea id="task-desc" rows="2"></textarea>
+        </label>
+        <label>
+          <span>Due date</span>
+          <input type="date" id="task-due">
+        </label>
+        <label>
+          <span>Priority</span>
+          <select id="task-priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <div class="modal-buttons">
+          <button type="submit" id="save-task-btn">Save</button>
+          <button type="button" id="cancel-task-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
